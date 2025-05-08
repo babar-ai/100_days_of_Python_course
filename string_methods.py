@@ -59,3 +59,33 @@ similar to find() except it will aris exception if the specific world is not ava
 name = "Babar Raheem"
 # print(name.index('khan'))   #output: ValueError: substring not found
 
+#split() fun 
+'''
+The split() function in Python is a string method used to break a string into a list of substrings based on a specified delimiter. If no delimiter is specified, it defaults to whitespace (spaces, tabs, and newlines).
+
+Syntax
+string.split(separator, maxsplit)
+
+'''
+#example
+
+string = "i am ai develper"
+list_str = string.split()
+print(list_str)
+
+
+
+
+#join()
+'''
+The join() function in Python is used to concatenate elements of a list (or any iterable) into a single string, with a specified separator between each element.
+
+
+string.join(iterable)
+
+'''
+#example 
+
+L = ['hello', 'ali']
+my_str = ' '.join(L)
+print(my_str)
