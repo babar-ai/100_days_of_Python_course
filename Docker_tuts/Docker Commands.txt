@@ -1,0 +1,4 @@
+to display the running container 
+
+-> docker ps
+

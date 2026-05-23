@@ -9,24 +9,27 @@ You can format logs consistently
 Can be centralied for entire project, making debugging and monitoring much easier
 
 """
+
 import logging
-from logging.handlers import RotatingFileHandler
+from logging.handlers import RotatingFileHandler               # In Python’s logging module, a Handler is a component that decides where your log messages go. RotatingFileHandler is a special file handler that automatically creates a new log file when the current one reaches a certain size.
 
-
+# Logging flow →
+# Logger → Handler → Formatter → Output     
 
 def setup_logger(name: str = None):
+
+
     if name is None:
-        name = __name__  # Use caller's module name
+        name = __name__  # Use caller's module name  # Built-in variable that stores module’s name
     
     logger = logging.getLogger(name)
     
-
     # 1: Prevent duplicate handler
     if logger.handlers:
         return logger
     
 
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.INFO)                              # means: “Ignore everything below INFO — only log INFO, WARNING, ERROR, and CRITICAL messages.”
     
     formatter = logging.Formatter(
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -38,16 +41,15 @@ def setup_logger(name: str = None):
     logger.addHandler(console_handler)
     
     # : Add rotation (5MB max, 3 backups)
-    file_handler = RotatingFileHandler(
-        "automation.log",
+    file_handler = RotatingFileHandler(                  # RotatingFileHandler to manage log file size and backups
+        "automation.log",      
         maxBytes=5*1024*1024,              # file size
         backupCount=3,
         encoding="utf-8"
     )
-    
+
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
     
-
 
     return logger

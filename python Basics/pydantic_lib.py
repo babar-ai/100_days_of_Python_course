@@ -43,14 +43,42 @@ class User(BaseModel):
     email: EmailStr
     is_active: bool = True #default value 
 
+
 #creating instance 
-user=User(id = "1", name='babar', email = 'baberraheem055@gmail.com') #automatically validate datatype
+user=User(id = "1", name='babar', email = 'baberraheem055@gmail.com')        #automatically validate datatype
 print(user)
+
 
 # Serialization
 user_dict = user.dict()
 print(user_dict)    
 
+
 #convet inot json()
 user_json = user.json()
 print(user_json)               #json format
+
+
+
+
+
+# Example 2
+#if pip not work use pip3 for installing these modules
+'''
+Pydantic will perform runtime checks, even when type annotations are not given
+
+'''
+import pydantic
+
+class Person(pydantic.BaseModel):
+    name: str
+    age: int
+    is_employee: bool
+
+person = Person.model_validate({
+    "name": "Baber",
+    "age": "twentiy",  # error
+    "is_employee": True 
+})
+
+print(person.age)

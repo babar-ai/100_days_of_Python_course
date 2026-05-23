@@ -1,23 +1,21 @@
+# Use official Python 3.11 image (slim = lightweight)
+FROM python:3.11-slim
 
-# use offical python image       # specifies the Python version (here, Python 3.9). slim → means it’s a lightweight version of the image.It removes unnecessary packages, tools, and docs
-
-FROM python:3.9-slim
-
-
-# Set working directory , here note that 'DIR/app'  tells Docker: “inside the container, treat /app as the default folder for everything (COPY, RUN, CMD, etc.)”.
+# Set working directory inside container
 WORKDIR /app
 
-
-# Copy dependency file & install
+# Copy dependency file first (for better caching)
 COPY requirements.txt .
-RUN pip install -r requirements.txt
 
-# Copy source code
+# Upgrade pip and install dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Copy all source code
 COPY . .
 
-# Expose port
-EXPOSE 5000
+# Expose the port your app runs on
+EXPOSE 8000
 
-
+# Command to run your application
 CMD ["uvicorn", "application:app", "--host", "0.0.0.0", "--port", "8000"]
-
