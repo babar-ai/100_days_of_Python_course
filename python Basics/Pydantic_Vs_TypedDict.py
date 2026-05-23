@@ -59,8 +59,34 @@ class User(TypedDict):
 
 user: User = {
     "name" : "Babar",
-    "age"  :  "25"
+    # "age"  :  "25",
+    "age"  : "twenthy-one"
 
 }
 
-print(user['age'])
+print(f"typedDict output: {user["age"]}")
+
+
+from pydantic import BaseModel
+
+class User(BaseModel):
+
+    name : str
+    reg_no : str
+    age : int
+
+
+user1 = User( 
+    name = "Babar raheem",
+    reg_no = "22mdbcs241",
+    age = 25 )
+ 
+
+print(f"pydantic output: {user1.age}")
+
+
+"""
+output : typedDict output: twenthy-one
+pydantic output: 25
+
+"""

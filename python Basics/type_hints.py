@@ -49,3 +49,58 @@ def foo(d: Vector) -> Vector:
 #Any
 def foo(output: Any):
     pass
+
+'''
+1. What is Union?
+
+Union means:
+
+A variable can accept multiple possible data types.
+
+
+'''
+
+# from typing import Union
+
+# Reg_No : Union[int, str]
+Reg_No : int | str
+
+# we can also write 
+
+Reg_No = "22MDBCS241"
+
+print(f'my registration no is {Reg_No}')
+
+
+
+'''
+Literal means:
+
+Variable can only contain specific exact values.
+
+Note: even if we pass anther value that is not define in literal still it will execute . why?
+
+Because Python itself does NOT enforce type hints at runtime.
+
+to achevie run time validation then use "Pydantic library"
+same case goes for all type hints
+
+'''
+
+from typing import Literal
+
+status: Literal['INPROGRESS', 'COMPLETETED', 'PENDING']
+
+status = 'INPROGRES'
+
+# print(f'my status is {status}')
+
+#example 2
+
+def set_theme(
+    mode: Literal["dark", "light"]
+):
+    print(mode)
+
+
+set_theme(mode="day")
