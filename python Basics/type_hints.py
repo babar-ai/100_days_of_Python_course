@@ -57,7 +57,6 @@ Union means:
 
 A variable can accept multiple possible data types.
 
-
 '''
 
 # from typing import Union
@@ -104,3 +103,18 @@ def set_theme(
 
 
 set_theme(mode="day")
+
+
+
+'''
+#Annotated
+
+In Python, Annotated is a type hint introduced in Python 3.9+ (via the typing module) that lets you attach extra
+ metadata to a type. The metadata doesn't change how the type works in Python itself, but libraries and frameworks
+can use it for validation, documentation, or other purposes.
+
+'''
+
+from typing import Annotated
+
+age: Annotated[int, "Must be between 18 and 100"] = 25
