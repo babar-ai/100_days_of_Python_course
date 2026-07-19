@@ -118,3 +118,9 @@ can use it for validation, documentation, or other purposes.
 from typing import Annotated
 
 age: Annotated[int, "Must be between 18 and 100"] = 25
+
+
+'''
+
+
+'''
